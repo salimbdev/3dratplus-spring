@@ -7,16 +7,14 @@ import fr.eql.ai115.three.d.rat.plus.spring.repository.*;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/public")
+@CrossOrigin("${front.url}")
 public class PublicController {
 
     private ProductDao productDao;
@@ -75,6 +73,11 @@ public class PublicController {
     @GetMapping("/services")
     public List<ServiceProposition> getServices() {
         return servicePropositionDao.findBy();
+    }
+
+    @GetMapping("/service/{id}")
+    public ServiceProposition getServiceById(@PathVariable("id") Long id) {
+        return servicePropositionDao.findById(id).orElseThrow();
     }
 
     @GetMapping("/categories")

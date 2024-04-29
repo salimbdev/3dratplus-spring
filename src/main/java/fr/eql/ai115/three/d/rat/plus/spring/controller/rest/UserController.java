@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin("${front.url}")
 public class UserController {
 
     CommentDao commentDao;
