@@ -70,6 +70,11 @@ public class PublicController {
         return productDisplayDto;
     }
 
+    @GetMapping("/products/category/{id}")
+    public List<Product> getProductsByCategory(@PathVariable("id") Long id) {
+        return productDao.findByCategoryId(id);
+    }
+
     @GetMapping("/services")
     public List<ServiceProposition> getServices() {
         return servicePropositionDao.findBy();

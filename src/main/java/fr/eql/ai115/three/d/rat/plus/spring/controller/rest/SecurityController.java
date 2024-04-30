@@ -77,6 +77,9 @@ public class SecurityController {
 
         authResponseDto.setFirstName(user.getFirstName());
         authResponseDto.setLastName(user.getLastName());
+        for (Role role : user.getRoles()) {
+            authResponseDto.getRoles().add(role);
+        }
         authResponseDto.setId(user.getId());
         return new ResponseEntity<>(authResponseDto, HttpStatus.OK);
     }
